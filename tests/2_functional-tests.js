@@ -14,6 +14,16 @@ suite('Functional Tests', function () {
       chai
         .request(server)
         .keepOpen()
+
+        //Note the keepOpen method just after the request method. 
+        //Normally you would run your tests from the command line, 
+        //or as part of an automated integration process, and you could 
+        //let chai-http start and stop your server automatically.
+
+        //However, the tests that run when this is submitted the link to this project 
+        //require the server to be up, there is a need to use the keepOpen 
+        //method to prevent chai-http from stopping the server.
+        
         .get('/hello')
         .end(function (err, res) {
           assert.equal(res.status, 200);
